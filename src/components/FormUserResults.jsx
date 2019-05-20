@@ -7,8 +7,8 @@ export class FormUserResults extends Component {
 
     
 	state = {
-		reponse: '',
-		success: false
+		reponseMessage: '',
+		submitSuccess: false
 	}
 
 	render () {

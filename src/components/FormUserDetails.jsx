@@ -14,8 +14,7 @@ export class FormUserDetails extends Component {
 		email: '',
 		cnumber: 0,
 		xp: '',
-		gender: '',
-		time: false
+		gender: ''
 	}
 
 	render () {

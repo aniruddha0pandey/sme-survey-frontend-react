@@ -15,7 +15,7 @@ const Page2 = () => {
 					<FormGroup>
 						<Label for="q4">1. Periodic medical examination is done for all the workers.</Label>
 						<div>
-							<CustomInput type="radio" value="1" id="ba1" name="q4" label="1" inline />
+							<CustomInput type="radio" value="1" id="b11" name="q4" label="1" inline />
 							<CustomInput type="radio" value="2" id="b12" name="q4" label="2" inline />
 							<CustomInput type="radio" value="3" id="b13" name="q4" label="3" inline />
 							<CustomInput type="radio" value="4" id="b14" name="q4" label="4" inline />
