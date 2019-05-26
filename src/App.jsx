@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 
 import './App.css';
 
-import FormUserIntro from './Components/FormUserIntro';
+// import FormUserIntro from './Components/FormUserIntro';
 import FormUserDetails from './Components/FormUserDetails';
 import FormUserSelections from './Components/FormUserSelections';
-import FormUserResults from './Components/FormUserResults';
+// import FormUserResults from './Components/FormUserResults';
 
 export default class App extends Component {
 
-  state = { page: 1 }
+  state = { 
+    page: 1
+  }
 
   render () {
     const stylish = {
@@ -19,10 +21,10 @@ export default class App extends Component {
 
     return (
       <div className="App" style={stylish}>
-        <FormUserIntro /><br /><br />
+        {/* <FormUserIntro /><br /><br /> */}
         <FormUserDetails /><br /><br />
         <FormUserSelections /><br /><br />
-        <FormUserResults />
+        {/* <FormUserResults /> */}
       </div>
     );
   }

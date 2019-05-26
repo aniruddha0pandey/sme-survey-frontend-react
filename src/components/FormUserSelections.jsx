@@ -11,7 +11,7 @@ import Page from './Page.jsx';
 export class FormUserSelections extends Component {
 
 	state = {
-		checkedButton: 0,
+		allChecked: false,
 		time: new Date().toLocaleTimeString()
 	}
 

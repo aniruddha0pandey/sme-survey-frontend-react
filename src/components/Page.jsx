@@ -1,67 +1,56 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-import { Form, FormGroup, Label, CustomInput, Button } from 'reactstrap';
+import { Form, FormGroup, Label, Button } from 'reactstrap';
 import { Card, CardBody, CardTitle, CardHeader, CardFooter } from 'reactstrap';
 
-const createQuestions = ( questions, id, it ) => {
-	var questionIterator = 1;
+import RadioGroup from './RadioGroup.jsx';
 
-	function customInput (id, index) {
-		var newKey;
-		const customInputList = [];
-		for (it=1; it<6; ++it) {
-			newKey = id[id.length-1]+(index+1)+it;
-			customInputList.push(
-				<CustomInput 
-					key={newKey} 
-					type="radio" 
-					value={it} 
-					id={newKey} 
-					name={'q'+index+1} 
-					label={it} 
-					inline 
-				/>
-			) 
-		}
-		return customInputList;
-	}
+class Pagu extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
-	return (
-		<Form>
-			{
-				questions.map((question, index) => {
-					return (
-						<FormGroup key={ questionIterator++ }>
-							<Label for={'q'+index+1}>{(index+1)+'. '+question}</Label>
-							<div>{customInput(id, index)}</div>
-						</FormGroup>
-					);
-				})
-			}
-		</Form>
-	);
+  createQuestions( questions, id, questionIterator = 1 ) {
+    return (
+      <Form>
+        {questions.map((question, index) => {
+          return (
+            <FormGroup key={ questionIterator++ }>
+              <Label for={'q'+index+1}>{(index+1)+'. '+question}</Label>
+              <RadioGroup bulk={5} id={id} index={index} />
+            </FormGroup>
+          );
+        })}
+      </Form>
+    );
+  }
+
+  render () {
+
+
+    return (
+      <div className="pageCard">
+        <Card>
+          <CardHeader tag="h5">
+            <CardTitle>{this.props.page.title}</CardTitle>
+          </CardHeader>
+          <CardBody>
+            {this.createQuestions( 
+              this.props.page.questions, this.props.page.id 
+            )}
+          </CardBody>
+          <CardFooter>
+            <Button>Previous</Button>
+            <Button style={{ float: 'right' }}>Next</Button>
+          </CardFooter>
+        </Card>
+        <br />
+      </div>
+    );
+  }
 }
 
-const Page = ({ page }) => {
 
+export default Pagu;
 
-  return (
-		<div className="pageCard">
-			<Card>
-				<CardHeader tag="h5">
-					<CardTitle>{page.title}</CardTitle>
-				</CardHeader>
-				<CardBody>
-					{createQuestions( page.questions, page.id )}
-				</CardBody>
-				<CardFooter>
-					<Button>Previous</Button>
-					<Button style={{ float: 'right' }}>Next</Button>
-				</CardFooter>
-			</Card>
-			<br />
-		</div>
-	);
-};
-
-export default Page;
