@@ -9,11 +9,22 @@ import Page from './Page.jsx';
 
 
 export class FormUserSelections extends Component {
+	constructor( props ) {
+		super( props );
 
-	state = {
-		allChecked: false,
-		time: new Date().toLocaleTimeString()
+		this.handleSubmit = this.handleSubmit.bind(this);
+
+		this.state = {
+			allChecked: false,
+			time: new Date().toLocaleTimeString()
+		};
 	}
+
+  handleSubmit( e ) {
+		e.preventDefault();
+
+    alert('Form Submited');
+  }
 
   createPages( pages ) {
     return pages.map(page => {
@@ -31,7 +42,7 @@ export class FormUserSelections extends Component {
 						{this.createPages( datastore.pages )}
 					</CardBody>
 					<CardFooter>
-						<Button style={{ width: '100%'}}>Submit</Button>
+						<Button style={{ width:'100%' }}>Submit</Button>
 					</CardFooter>
 				</Card>
 			</Container>

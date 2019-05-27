@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Form, FormGroup, Label, Button } from 'reactstrap';
 import { Card, CardBody, CardTitle, CardHeader, CardFooter } from 'reactstrap';
 
-import RadioGroup from './RadioGroup.jsx';
+import InputGroupRadio from './InputGroupRadio.jsx';
 
 class Pagu extends Component {
   constructor(props) {
@@ -11,14 +11,21 @@ class Pagu extends Component {
     this.state = {};
   }
 
-  createQuestions( questions, id, questionIterator = 1 ) {
+
+
+  createQuestions( questions, id ) {
     return (
       <Form>
         {questions.map((question, index) => {
           return (
-            <FormGroup key={ questionIterator++ }>
-              <Label for={'q'+index+1}>{(index+1)+'. '+question}</Label>
-              <RadioGroup bulk={5} id={id} index={index} />
+            <FormGroup key={ index }>
+              <Label for={'q'+index}>{index+1+'. '+question.text}</Label>
+              <InputGroupRadio 
+                choices={question.choices} 
+                id={id} 
+                index={index} 
+                name={'q'+index} 
+              />
             </FormGroup>
           );
         })}
@@ -26,6 +33,7 @@ class Pagu extends Component {
     );
   }
 
+  
   render () {
 
 
