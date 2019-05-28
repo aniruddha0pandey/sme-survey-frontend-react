@@ -16,7 +16,8 @@ export class FormUserSelections extends Component {
 
 		this.state = {
 			allChecked: false,
-			time: new Date().toLocaleTimeString()
+			time: new Date().toLocaleTimeString(),
+			data: []
 		};
 	}
 
@@ -28,7 +29,12 @@ export class FormUserSelections extends Component {
 
   createPages( pages ) {
     return pages.map(page => {
-      return <Page key={page.id} page={page}/>
+      return (
+				<Page 
+					key={page.id} 
+					page={page}
+				/>
+			);
     })
   }
   

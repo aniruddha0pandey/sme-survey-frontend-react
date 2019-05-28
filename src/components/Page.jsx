@@ -34,13 +34,13 @@ class Pagu extends Component {
       <Form>
         {questions.map((question, index) => {
           return (
-            <FormGroup key={ index }>
-              <Label for={'q'+index}>{index+1+'. '+question.text}</Label>
+            <FormGroup key={index}>
+              <Label for={`q${index}`}>{`${index+1}. ${question.text}`}</Label>
               <InputGroupRadio 
                 choices={question.choices} 
                 id={id} 
                 index={index} 
-                name={'q'+index} 
+                name={`q${index}`} 
                 onRadioSelect={this.handleInputGroupRadioChange}
               />
             </FormGroup>
@@ -66,8 +66,8 @@ class Pagu extends Component {
             )}
           </CardBody>
           <CardFooter>
-            <Button>Previous</Button>
-            <Button style={{ float: 'right' }}>Next</Button>
+            <Button onClick={this.prevStep}>Previous</Button>
+            <Button style={{ float: 'right' }} onClick={this.nextStep}>Next</Button>
           </CardFooter>
         </Card>
         <br />

@@ -6,7 +6,6 @@ class InputGroupRadio extends Component {
   constructor(props) {
 		super(props);
 		this.handleInputChange = this.handleInputChange.bind(this);
-
     this.state = {
       [this.props.name]: 0
     };
@@ -26,7 +25,7 @@ class InputGroupRadio extends Component {
           key={it}
           type="radio"
           value={choice}
-          id={id[id.length-1]+index+it}
+          id={`${id[id.length-1]}${index}${it}`}
           name={name}
           label={choice}
           onChange={this.handleInputChange}
