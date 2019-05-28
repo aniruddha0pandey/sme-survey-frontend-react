@@ -4,8 +4,10 @@ import { CustomInput } from 'reactstrap';
 
 class InputGroupRadio extends Component {
   constructor(props) {
-		super(props);
-		this.handleInputChange = this.handleInputChange.bind(this);
+    super(props);
+    
+    this.handleInputChange = this.handleInputChange.bind(this);
+    
     this.state = {
       [this.props.name]: 0
     };

@@ -13,17 +13,25 @@ export class FormUserSelections extends Component {
 		super( props );
 
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleInputChange = this.handleInputChange.bind(this);
 
 		this.state = {
 			allChecked: false,
 			time: new Date().toLocaleTimeString(),
-			data: []
+			values: {}
 		};
 	}
 
-  handleSubmit( e ) {
-		e.preventDefault();
+	handleInputChange ( sheetId, data ) {
+		this.setState({
+			values: {
+				...this.state.values,
+				[sheetId]: data
+			}
+		})
+	}
 
+  handleSubmit( e ) {
     alert('Form Submited');
   }
 
@@ -33,6 +41,7 @@ export class FormUserSelections extends Component {
 				<Page 
 					key={page.id} 
 					page={page}
+					onPageEntry={this.handleInputChange}
 				/>
 			);
     })
@@ -48,7 +57,7 @@ export class FormUserSelections extends Component {
 						{this.createPages( datastore.pages )}
 					</CardBody>
 					<CardFooter>
-						<Button style={{ width:'100%' }}>Submit</Button>
+						<Button style={{ width:'100%' }} onClick={this.handleSubmit}>Submit</Button>
 					</CardFooter>
 				</Card>
 			</Container>

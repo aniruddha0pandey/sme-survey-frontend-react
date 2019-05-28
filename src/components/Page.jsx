@@ -8,9 +8,12 @@ import InputGroupRadio from './InputGroupRadio.jsx';
 class Pagu extends Component {
   constructor(props) {
     super(props);
+
     this.handleInputGroupRadioChange = this.handleInputGroupRadioChange.bind(this);
+
     this.state = {
-      sheetData: {}
+      sheetData: {},
+      data: {}
     };
   }
 
@@ -22,9 +25,11 @@ class Pagu extends Component {
       }
     }, () => {
       this.setState({
-        [sheetId]: Object.keys(this.state.sheetData).map( question => {
+        data: Object.keys(this.state.sheetData).map( question => {
           return this.state.sheetData[question];
         })
+      }, () => {
+        this.props.onPageEntry(sheetId, this.state.data);
       })
     });
 	}
@@ -50,7 +55,14 @@ class Pagu extends Component {
     );
   }
 
+  prevStep () {
+    alert('Previous Step');
+  }
   
+  next () {
+    alert('Previous Step');
+  }
+
   render () {
 
 
