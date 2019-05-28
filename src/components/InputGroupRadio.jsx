@@ -7,12 +7,15 @@ class InputGroupRadio extends Component {
 		super(props);
 		this.handleInputChange = this.handleInputChange.bind(this);
 
-    this.state = {};
+    this.state = {
+      [this.props.name]: 0
+    };
   }
 
 	handleInputChange ( e ) {
-    const value = Number(e.target.value);
+    const value = Number(e.target.value)
     this.setState({ [this.props.name]: value })
+    this.props.onRadioSelect(this.props.name, value, this.props.id)
 	}
 
 	customInput (id, index, choices, name) {

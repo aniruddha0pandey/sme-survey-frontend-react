@@ -8,10 +8,26 @@ import InputGroupRadio from './InputGroupRadio.jsx';
 class Pagu extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.handleInputGroupRadioChange = this.handleInputGroupRadioChange.bind(this);
+    this.state = {
+      sheetData: {}
+    };
   }
 
-
+	handleInputGroupRadioChange ( question, value, sheetId ) {
+    this.setState({
+      sheetData: {
+        ...this.state.sheetData, 
+        [question]: value
+      }
+    }, () => {
+      this.setState({
+        [sheetId]: Object.keys(this.state.sheetData).map( question => {
+          return this.state.sheetData[question];
+        })
+      })
+    });
+	}
 
   createQuestions( questions, id ) {
     return (
@@ -25,6 +41,7 @@ class Pagu extends Component {
                 id={id} 
                 index={index} 
                 name={'q'+index} 
+                onRadioSelect={this.handleInputGroupRadioChange}
               />
             </FormGroup>
           );
