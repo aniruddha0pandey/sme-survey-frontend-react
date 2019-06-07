@@ -1,21 +1,16 @@
 import React, { Component } from 'react';
-import { Container } from 'reactstrap'
+import { Container } from 'reactstrap';
 
 import { Form, FormGroup, Label, Input, CustomInput, Button } from 'reactstrap';
 import { Card, CardBody, CardTitle, CardHeader, CardFooter } from 'reactstrap';
 
 
 export class FormUserDetails extends Component {
-	constructor( props ) {
-		super( props );
+	constructor(  ) {
+		super(  );
 		this.handleChange = this.handleChange.bind(this);
 		this.state = {
-			fname: '',
-			iname: '',
-			email: '',
-			cnumber: 0,
-			xp: '',
-			gender: ''
+			info: {}
 		};
 	}    
 	
@@ -25,7 +20,12 @@ export class FormUserDetails extends Component {
 
 	handleChange ( e ) {
 		this.setState({
-			[e.target.name]: e.target.value
+			info: {
+				...this.state.info,
+				[e.target.name]: e.target.value
+			}
+		}, () => {
+			this.props.changeValue(this.state.info, 'info');
 		})
 	}
 
@@ -67,6 +67,7 @@ export class FormUserDetails extends Component {
 								<div>
 									<CustomInput type="radio" value="female" id="genderFemale" name="gender" label="Female" inline />
 									<CustomInput type="radio" value="male" id="genderMale" name="gender" label="Male" inline />
+									<CustomInput type="radio" value="other" id="genderOther" name="gender" label="Other" inline />
 								</div>
 							</FormGroup>
 						</Form>

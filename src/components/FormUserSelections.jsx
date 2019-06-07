@@ -1,21 +1,17 @@
 import React, { Component } from 'react';
-import { Container } from 'reactstrap'
-
-import { Button } from 'reactstrap';
-import { Card, CardBody, CardFooter } from 'reactstrap';
 
 import datastore from '../datastore.json';
 import Page from './Page.jsx';
 
 
 export class FormUserSelections extends Component {
-	constructor( props ) {
-		super( props );
+	constructor(  ) {
+		super(  );
 
-		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleInputChange = this.handleInputChange.bind(this);
 
 		this.state = {
+			pageNumber: 0,
 			allChecked: false,
 			time: new Date().toLocaleTimeString(),
 			values: {}
@@ -28,12 +24,10 @@ export class FormUserSelections extends Component {
 				...this.state.values,
 				[sheetId]: data
 			}
+		}, () => {
+			this.props.changeValue(this.state.values, 'values');
 		})
 	}
-
-  handleSubmit( e ) {
-    alert('Form Submited');
-  }
 
   createPages( pages ) {
     return pages.map(page => {
@@ -51,16 +45,7 @@ export class FormUserSelections extends Component {
 
 
 		return (
-			<Container>
-				<Card>
-					<CardBody>
-						{this.createPages( datastore.pages )}
-					</CardBody>
-					<CardFooter>
-						<Button style={{ width:'100%' }} onClick={this.handleSubmit}>Submit</Button>
-					</CardFooter>
-				</Card>
-			</Container>
+			<div>{this.createPages( datastore.pages )}</div>
 		);
 	}
 };

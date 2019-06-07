@@ -5,7 +5,7 @@ import { Card, CardBody, CardTitle, CardHeader, CardFooter } from 'reactstrap';
 
 import InputGroupRadio from './InputGroupRadio.jsx';
 
-class Pagu extends Component {
+class Page extends Component {
   constructor(props) {
     super(props);
 
@@ -13,10 +13,11 @@ class Pagu extends Component {
 
     this.state = {
       sheetData: {},
-      data: {}
+      rawData: {}
     };
   }
 
+  // TODO: improve method
 	handleInputGroupRadioChange ( question, value, sheetId ) {
     this.setState({
       sheetData: {
@@ -25,11 +26,11 @@ class Pagu extends Component {
       }
     }, () => {
       this.setState({
-        data: Object.keys(this.state.sheetData).map( question => {
+        rawData: Object.keys(this.state.sheetData).map( question => {
           return this.state.sheetData[question];
         })
       }, () => {
-        this.props.onPageEntry(sheetId, this.state.data);
+        this.props.onPageEntry(sheetId, this.state.rawData);
       })
     });
 	}
@@ -89,5 +90,5 @@ class Pagu extends Component {
 }
 
 
-export default Pagu;
+export default Page;
 
