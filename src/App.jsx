@@ -1,27 +1,36 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
-import './App.css';
+import { Router, Route, Switch } from "react-router-dom"
+import { createBrowserHistory } from "history"
 
-// import FormUserIntro from './Components/FormUserIntro';
-import FormEntry from './Components/FormEntry';
-// import FormUserResults from './Components/FormUserResults';
+import routesApp from './Routes/App'
+
+const hist = createBrowserHistory()
 
 export default class App extends Component {
-
-  state = {};
-
   render () {
     const stylish = {
       backgroundColor: '#fcfffd',
       padding: '50px 0px 50px 0px'
-    };
+    }
 
     return (
       <div className="App" style={stylish}>
-        {/* <FormUserIntro /><br /><br /> */}
-        <FormEntry />
-        {/* <FormUserResults /> */}
+        <Router history={hist}>
+          <Switch>{
+            routesApp.map((prop, key) => {
+              return (
+                <Route 
+                  exact={true} 
+                  path={prop.path} 
+                  key={key} 
+                  component={prop.component} 
+                />
+              )
+            })
+          }</Switch>
+        </Router>
       </div>
-    );
+    )
   }
 }

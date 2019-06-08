@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
+import { Route, Redirect } from 'react-router';
 
 import { Container } from 'reactstrap';
-import { Button } from 'reactstrap';
+import { Button, Spinner, Modal } from 'reactstrap';
 import { Card, CardBody, CardTitle, CardHeader, CardFooter } from 'reactstrap';
+
+import routeFormEntry from '../Routes/FormEntry';
+import API from '../Utils/Api.js';
 
 import FormUserDetails from './FormUserDetails';
 import FormUserSelections from './FormUserSelections';
 
-import API from '../Utils/Api.js';
+import '../App.css'
 
 class FormEntry extends Component {
 	constructor(  ) {
@@ -18,7 +22,9 @@ class FormEntry extends Component {
 
 		this.state = {
       info: {},
-      values: {}
+      values: {},
+      allChecked: false,
+      modal: false
     };
 	}
 
@@ -30,33 +36,58 @@ class FormEntry extends Component {
   }
 
   // TODO: use componentDidMount()
+  // TODO: async await
   handleSubmit ( ) {
-    let params = this.state;
+    let params = {
+      info: this.state.info,
+      values: this.state.values
+    };
     // let spreadsheetId = '/1pbEG_HGrhKsh8seYF4-7h-5Wiq6PBVvKWqZjuitQmJw';
     let spreadsheetId = `/api`;
     
     API.post(spreadsheetId, { params })
       .then(res => console.log(JSON.parse(res.config.data)))
-      .then(res => console.log(JSON.parse(res.data.msg)))
+      .then(() => this.setState({ allChecked: true }))
       .catch(err => console.log(err))
+
+    this.setState(prevState => ({ modal: !prevState.modal }))
   }
 
   render () {
+    if ( this.state.allChecked ) {
+      return (
+        <div>
+          <Route path={routeFormEntry[0].path} component={routeFormEntry[0].component} />
+          <Redirect to={routeFormEntry[0].path} />
+        </div>
+      )
+    }
+
+    const stylish = {
+      width: '5rem', 
+      height: '5rem', 
+      color: 'lightblue',
+      marginLeft: '42%',
+    }
+
     return (
-			<Container>
-				<Card>
+      <Container>
+        <Card>
           <CardHeader tag="h2">
-						<CardTitle>Form</CardTitle>
-					</CardHeader>
-					<CardBody>
+            <CardTitle>Form</CardTitle>
+          </CardHeader>
+          <CardBody>
             <FormUserDetails changeValue={this.collectValues} /><br />
             <FormUserSelections changeValue={this.collectValues} />
-					</CardBody>
-					<CardFooter>
-            <Button style={{ width:'100%' }} onClick={this.handleSubmit} >Submit</Button>
-					</CardFooter>
-				</Card>
-			</Container>
+          </CardBody>
+          <CardFooter>
+            <Button type='submit' style={{ width:'100%' }} onClick={this.handleSubmit} >Submit</Button>
+            <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+              <Spinner style={ stylish } />
+            </Modal>
+          </CardFooter>
+        </Card>
+      </Container>
     );
   }
 }
