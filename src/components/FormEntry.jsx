@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
-import { Route, Redirect } from 'react-router';
+import { Router, Switch, Route, Redirect } from 'react-router';
+import { createBrowserHistory } from "history"
 
 import { Container } from 'reactstrap';
 import { Button, Spinner, Modal } from 'reactstrap';
 import { Card, CardBody, CardTitle, CardHeader, CardFooter } from 'reactstrap';
 
-import routeFormEntry from '../Routes/FormEntry';
+import FormUserResults from './FormUserResults'
 import API from '../Utils/Api.js';
 
 import FormUserDetails from './FormUserDetails';
 import FormUserSelections from './FormUserSelections';
 
 import '../App.css'
+
+const hist = createBrowserHistory()
 
 class FormEntry extends Component {
 	constructor(  ) {
@@ -50,16 +53,18 @@ class FormEntry extends Component {
       .then(() => this.setState({ allChecked: true }))
       .catch(err => console.log(err))
 
-    this.setState(prevState => ({ modal: !prevState.modal }))
+    this.setState(({ modal: true }))
   }
 
   render () {
     if ( this.state.allChecked ) {
       return (
-        <div>
-          <Route path={routeFormEntry[0].path} component={routeFormEntry[0].component} />
-          <Redirect to={routeFormEntry[0].path} />
-        </div>
+        <Router history={hist}>
+          <Switch>
+            <Route exact={true} path="/result" component={FormUserResults} />
+            <Redirect from="/form" to="/result" />
+          </Switch>
+        </Router>
       )
     }
 
