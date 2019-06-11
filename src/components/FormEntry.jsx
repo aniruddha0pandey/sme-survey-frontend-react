@@ -57,6 +57,13 @@ class FormEntry extends Component {
   }
 
   render () {
+    const stylish = {
+      width: '5rem', 
+      height: '5rem', 
+      color: 'lightblue',
+      marginLeft: '42%',
+    }
+
     if ( this.state.allChecked ) {
       return (
         <Router history={hist}>
@@ -66,13 +73,6 @@ class FormEntry extends Component {
           </Switch>
         </Router>
       )
-    }
-
-    const stylish = {
-      width: '5rem', 
-      height: '5rem', 
-      color: 'lightblue',
-      marginLeft: '42%',
     }
 
     return (
