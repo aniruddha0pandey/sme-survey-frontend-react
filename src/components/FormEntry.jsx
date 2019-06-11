@@ -38,8 +38,7 @@ class FormEntry extends Component {
       this.setState(state => ({ values: value }))
   }
 
-  // TODO: use componentDidMount()
-  // TODO: async await
+  // TODO: use componentDidMount() (i.e async await)
   handleSubmit ( ) {
     let params = {
       info: this.state.info,
@@ -64,35 +63,35 @@ class FormEntry extends Component {
       marginLeft: '42%',
     }
 
-    if ( this.state.allChecked ) {
-      return (
-        <Router history={hist}>
-          <Switch>
-            <Route exact={true} path="/result" component={FormUserResults} />
-            <Redirect from="/form" to="/result" />
-          </Switch>
-        </Router>
-      )
-    }
-
     return (
-      <Container>
-        <Card>
-          <CardHeader tag="h2">
-            <CardTitle>Form</CardTitle>
-          </CardHeader>
-          <CardBody>
-            <FormUserDetails changeValue={this.collectValues} /><br />
-            <FormUserSelections changeValue={this.collectValues} />
-          </CardBody>
-          <CardFooter>
-            <Button type='submit' style={{ width:'100%' }} onClick={this.handleSubmit} >Submit</Button>
-            <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-              <Spinner style={ stylish } />
-            </Modal>
-          </CardFooter>
-        </Card>
-      </Container>
+      <React.Fragment>
+        { this.state.allChecked ? (
+          <Router history={hist}>
+            <Switch>
+              <Route exact={true} path="/result" component={FormUserResults} />
+              <Redirect from="/form" to="/result" />
+            </Switch>
+          </Router>
+        ) : (
+          <Container>
+            <Card>
+              <CardHeader tag="h2">
+                <CardTitle>Form</CardTitle>
+              </CardHeader>
+              <CardBody>
+                <FormUserDetails changeValue={this.collectValues} /><br />
+                <FormUserSelections changeValue={this.collectValues} />
+              </CardBody>
+              <CardFooter>
+                <Button type='submit' style={{ width:'100%' }} onClick={this.handleSubmit} >Submit</Button>
+                <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+                  <Spinner style={ stylish } />
+                </Modal>
+              </CardFooter>
+            </Card>
+          </Container>
+        )}
+      </React.Fragment>
     );
   }
 }

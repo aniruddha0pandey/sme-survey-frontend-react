@@ -8,14 +8,14 @@ class InputGroupRadio extends Component {
     
     this.handleInputChange = this.handleInputChange.bind(this);
     
-    this.state = {
-      [this.props.name]: 0
-    };
+    this.state = { [this.props.name]: 0 };
   }
 
 	handleInputChange ( e ) {
     const value = Number(e.target.value)
     this.setState({ [this.props.name]: value })
+
+    // Callback to FormUserSelections
     this.props.onRadioSelect(this.props.name, value, this.props.id)
 	}
 
@@ -38,8 +38,6 @@ class InputGroupRadio extends Component {
 	}  
 
   render () {
-
-
     return (
       <div>
         {this.customInput(
