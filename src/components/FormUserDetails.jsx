@@ -25,6 +25,8 @@ export class FormUserDetails extends Component {
 				[e.target.name]: e.target.value
 			}
 		}, () => {
+
+			// Callback to FormEntry
 			this.props.changeValue(this.state.info, 'info');
 		})
 	}

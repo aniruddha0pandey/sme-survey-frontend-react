@@ -25,6 +25,8 @@ export class FormUserSelections extends Component {
 				[sheetId]: data
 			}
 		}, () => {
+
+			// Callback to FormEntry
 			this.props.changeValue(this.state.values, 'values');
 		})
 	}
