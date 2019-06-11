@@ -20,17 +20,13 @@ class Page extends Component {
   // TODO: improve method
 	handleInputGroupRadioChange ( question, value, sheetId ) {
     this.setState({
-      sheetData: {
-        ...this.state.sheetData, 
-        [question]: value
-      }
+      sheetData: { ...this.state.sheetData, [question]: value }
     }, () => {
       this.setState({
         rawData: Object.keys(this.state.sheetData).map( question => {
           return this.state.sheetData[question];
         })
       }, () => {
-
         // Callback to FormUserSelection
         this.props.onPageEntry(sheetId, this.state.rawData);
       })

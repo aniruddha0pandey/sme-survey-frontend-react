@@ -39,13 +39,16 @@ class InputGroupRadio extends Component {
 
   render () {
     return (
-      <React.Fragment>{
-        this.customInput(
-        this.props.id, 
-        this.props.index, 
-        this.props.choices, 
-        this.props.name
-      )}</React.Fragment>
+      <div>
+        {
+          this.customInput(
+            this.props.id, 
+            this.props.index, 
+            this.props.choices, 
+            this.props.name
+          )
+        }
+      </div>
     );
   }
 }
