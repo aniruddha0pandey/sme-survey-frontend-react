@@ -26,7 +26,7 @@ class FormEntry extends Component {
 		this.state = {
       info: {},
       values: {},
-      allChecked: false,
+      postRequestCompleted: false,
       modal: false
     };
 	}
@@ -49,7 +49,7 @@ class FormEntry extends Component {
     
     API.post(spreadsheetId, { params })
       .then(res => console.log(JSON.parse(res.config.data)))
-      .then(() => this.setState({ allChecked: true }))
+      .then(() => this.setState({ postRequestCompleted: true }))
       .catch(err => console.log(err))
 
     this.setState(({ modal: true }))
@@ -65,7 +65,7 @@ class FormEntry extends Component {
 
     return (
       <React.Fragment>
-        { this.state.allChecked ? (
+        { this.state.postRequestCompleted ? (
           <Router history={hist}>
             <Switch>
               <Route exact={true} path="/result" component={FormUserResults} />
@@ -83,7 +83,7 @@ class FormEntry extends Component {
                 <FormUserSelections changeValue={this.collectValues} />
               </CardBody>
               <CardFooter>
-                <Button type='submit' style={{ width:'100%' }} onClick={this.handleSubmit} >Submit</Button>
+                <Button style={{ width:'100%' }} onClick={this.handleSubmit} >Submit</Button>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                   <Spinner style={ stylish } />
                 </Modal>
