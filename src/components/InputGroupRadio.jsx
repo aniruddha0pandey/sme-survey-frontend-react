@@ -15,7 +15,7 @@ class InputGroupRadio extends Component {
     const value = Number(e.target.value)
     this.setState({ [this.props.name]: value })
 
-    // Callback to FormUserSelections
+    // Callback to Page
     this.props.onRadioSelect(this.props.name, value, this.props.id)
 	}
 

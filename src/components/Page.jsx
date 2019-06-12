@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import { Form, FormGroup, Label, Button } from 'reactstrap';
-import { Card, CardBody, CardTitle, CardHeader, CardFooter } from 'reactstrap';
+import { Form, FormGroup, Label } from 'reactstrap';
+import { Card, CardBody, CardTitle, CardHeader } from 'reactstrap';
 
 import InputGroupRadio from './InputGroupRadio.jsx';
 
@@ -54,17 +54,7 @@ class Page extends Component {
     );
   }
 
-  prevStep () {
-    alert('Previous Step');
-  }
-  
-  next () {
-    alert('Previous Step');
-  }
-
   render () {
-
-
     return (
       <div className="pageCard">
         <Card>
@@ -76,10 +66,6 @@ class Page extends Component {
               this.props.page.questions, this.props.page.id 
             )}
           </CardBody>
-          <CardFooter>
-            <Button onClick={this.prevStep}>Previous</Button>
-            <Button style={{ float: 'right' }} onClick={this.nextStep}>Next</Button>
-          </CardFooter>
         </Card>
         <br />
       </div>

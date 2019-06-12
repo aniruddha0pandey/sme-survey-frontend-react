@@ -1,18 +1,19 @@
-import React, { Component } from 'react';
-import { Container } from 'reactstrap'
+import React, { Component } from 'react'
 
-import { Card, CardBody, CardTitle, CardHeader } from 'reactstrap';
+import { Container } from 'reactstrap'
+import { Card, CardBody, CardTitle, CardHeader } from 'reactstrap'
 
 export class FormUserResults extends Component {
+	constructor(  ) {
+		super(  )
 
-    
-	state = {
-		reponseMessage: '',
-		submitSuccess: false
+		this.state = {
+			reponseMessage: '',
+			submitSuccess: false
+		}
 	}
 
 	render () {
-
 		return (
 			<Container>
 				<Card>
@@ -20,12 +21,14 @@ export class FormUserResults extends Component {
 						<CardTitle>Survey Report</CardTitle>
 					</CardHeader>
 					<CardBody>
-						This is a result.
+						<h4>Successfull Submission!</h4>
+						<p>We sincerely appreciate your time and co-operation for this feedback.</p>
+						<p>Thank You</p>
 					</CardBody>
 				</Card>
 			</Container>
-		);
+		)
 	}
-};
+}
 
-export default FormUserResults;
+export default FormUserResults

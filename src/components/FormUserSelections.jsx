@@ -25,7 +25,6 @@ export class FormUserSelections extends Component {
 				[sheetId]: data
 			}
 		}, () => {
-
 			// Callback to FormEntry
 			this.props.changeValue(this.state.values, 'values');
 		})
@@ -44,8 +43,6 @@ export class FormUserSelections extends Component {
   }
   
 	render () {
-
-
 		return (
 			<div>{this.createPages( datastore.pages )}</div>
 		);
