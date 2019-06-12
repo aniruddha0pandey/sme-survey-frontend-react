@@ -9,6 +9,7 @@ export class FormUserSelections extends Component {
 		super(  );
 
 		this.handleInputChange = this.handleInputChange.bind(this);
+		this.createPages = this.createPages.bind(this);
 
 		this.state = {
 			pageNumber: 0,
@@ -20,32 +21,21 @@ export class FormUserSelections extends Component {
 
 	handleInputChange ( sheetId, data ) {
 		this.setState({
-			values: {
-				...this.state.values,
-				[sheetId]: data
-			}
+			values: { ...this.state.values, [sheetId]: data }
 		}, () => {
 			// Callback to FormEntry
 			this.props.changeValue(this.state.values, 'values');
 		})
 	}
 
-  createPages( pages ) {
+  createPages ( pages ) {
     return pages.map(page => {
-      return (
-				<Page 
-					key={page.id} 
-					page={page}
-					onPageEntry={this.handleInputChange}
-				/>
-			);
-    })
+      return <Page key={page.id} page={page} onPageEntry={this.handleInputChange} />
+		})
   }
   
 	render () {
-		return (
-			<div>{this.createPages( datastore.pages )}</div>
-		);
+		return <div>{this.createPages( datastore.pages )}</div>
 	}
 };
 

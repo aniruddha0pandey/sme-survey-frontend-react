@@ -1,20 +1,16 @@
 import React, { Component } from 'react';
-import { Router, Switch, Route, Redirect } from 'react-router';
-import { createBrowserHistory } from "history"
+import { Redirect } from 'react-router';
 
 import { Container } from 'reactstrap';
 import { Button, Spinner, Modal } from 'reactstrap';
 import { Card, CardBody, CardTitle, CardHeader, CardFooter } from 'reactstrap';
 
-import FormUserResults from './FormUserResults'
 import API from '../Utils/Api.js';
 
 import FormUserDetails from './FormUserDetails';
 import FormUserSelections from './FormUserSelections';
 
 import '../App.css'
-
-const hist = createBrowserHistory()
 
 class FormEntry extends Component {
 	constructor(  ) {
@@ -36,8 +32,12 @@ class FormEntry extends Component {
 
     this.pages = [
       <FormUserDetails changeValue={this.collectValues} />,
-      <div></div>,
       <FormUserSelections changeValue={this.collectValues} />
+    ]
+
+    this.buttons = [
+      <Button style={{ float: 'right' }} onClick={this.nextStep}>Next</Button>,
+      <Button style={{ width:'100%' }} onClick={this.handleSubmit} >Submit</Button>
     ]
 	}
 
@@ -84,38 +84,15 @@ class FormEntry extends Component {
     return (
       <React.Fragment>
         { this.state.postRequestCompleted ? (
-          <Router history={hist}>
-            <Switch>
-              <Route exact={true} path="/result" component={FormUserResults} />
-              <Redirect from="/form" to="/result" />
-            </Switch>
-          </Router>
+          <Redirect from="/form" to="/result" />
         ) : (
           <Container>
             <Card>
               <CardHeader tag="h2">
                 <CardTitle>Form</CardTitle>
               </CardHeader>
-              <CardBody>
-                {this.pages[this.state.page]}
-              </CardBody>
-              <CardFooter>
-                {(() => {
-                  switch(this.state.page) {
-                    case (0):
-                      return <Button style={{ float: 'right' }} onClick={this.nextStep}>Next</Button>
-                    case (this.pages.length - 1):
-                      return <Button style={{ width:'100%' }} onClick={this.handleSubmit} >Submit</Button>
-                    default:
-                      return (
-                        <React.Fragment>
-                          <Button onClick={this.prevStep}>Previous</Button>
-                          <Button style={{ float: 'right' }} onClick={this.nextStep}>Next</Button>
-                        </React.Fragment>
-                      )
-                  }
-                })()}
-              </CardFooter>
+              <CardBody>{this.pages[this.state.page]}</CardBody>
+              <CardFooter>{this.buttons[this.state.page]}</CardFooter>
             </Card>
             <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
               <Spinner style={ stylish } />
