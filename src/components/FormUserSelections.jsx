@@ -14,7 +14,6 @@ export class FormUserSelections extends Component {
 		this.state = {
 			pageNumber: 0,
 			allChecked: false,
-			time: new Date().toLocaleTimeString(),
 			values: {}
 		};
 	}

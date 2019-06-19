@@ -52,7 +52,8 @@ class FormEntry extends Component {
   handleSubmit () {
     let params = {
       info: this.state.info,
-      values: this.state.values
+      values: this.state.values,
+      time: new Date()
     };
     // let spreadsheetId = '/1pbEG_HGrhKsh8seYF4-7h-5Wiq6PBVvKWqZjuitQmJw';
     let spreadsheetId = `/api`;
