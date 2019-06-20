@@ -55,10 +55,9 @@ class FormEntry extends Component {
       values: this.state.values,
       time: new Date()
     };
-    // let spreadsheetId = '/1pbEG_HGrhKsh8seYF4-7h-5Wiq6PBVvKWqZjuitQmJw';
-    let spreadsheetId = `/api`;
-    
-    API.post(spreadsheetId, { params })
+
+    let apiVersion = 'v2.0.0';
+    API.post(apiVersion, { params })
       .then(res => console.log(JSON.parse(res.config.data)))
       .then(() => this.setState({ postRequestCompleted: true }))
       .catch(err => console.log(err))

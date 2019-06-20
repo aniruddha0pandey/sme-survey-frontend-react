@@ -41,8 +41,8 @@ export class FormUserDetails extends Component {
 							<Label for="iname">Industry Name</Label>
 							<CustomInput type="select" id="iname" name="iname" value={this.state.iname} >
 								<option value="">Select Industry</option>
-								<option>Test Industry 1</option>
-								<option>Test Industry 2</option>
+								<option value="1pbEG_HGrhKsh8seYF4-7h-5Wiq6PBVvKWqZjuitQmJw">Test Industry 1</option>
+								<option value="1pbEG_HGrhKsh8seYF4-7h-5Wiq6PBVvKWqZjuitQmJw">Test Industry 2</option>
 							</CustomInput>
 						</FormGroup>
 						<FormGroup>
